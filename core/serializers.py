@@ -87,3 +87,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
                 "types": ["application/json"]
             }
         ]
+
+class AssignRoleSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+    group_id = serializers.IntegerField()

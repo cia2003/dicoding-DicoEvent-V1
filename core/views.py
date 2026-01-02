@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.contrib.auth.models import Group
 from .models import User
 from .serializers import UserSerializer
@@ -91,3 +92,13 @@ class GroupDetailView(APIView):
         group = self.get_object(pk)
         group.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class AssignRoleView(APIView):
+    authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated, IsAdminOrSuperUser]
+
+    def post(self, request):
+        user = get_object_or_404(User, pk=request.data['user_id'])
+        group = get_object_or_404(Group, pk=request.data['group_id'])
+        user.groups.add(group)
+        return Response(status=status.HTTP_201_CREATED)
