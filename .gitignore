@@ -1,5 +1,2 @@
-# gitignore
-.gitignore
-
-# Environment Variables
+# Ignore Environment Variables
 .env.var
