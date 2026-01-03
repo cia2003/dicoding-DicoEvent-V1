@@ -27,3 +27,23 @@ class IsAdminOrSuperUser(BasePermission):
               request.user.groups.filter(name='admin').exists()
           )
       )
+    
+class IsOrganizer(BasePermission):
+    """
+    Allows access only to organizer users.
+    """
+
+    def has_permission(self, request, view):
+        return request.user and request.user.is_authenticated and request.user.groups.filter(name='organizer').exists()
+
+class IsOrganizerOrSuperUser(BasePermission):
+    """
+    Allows access to organizer and superusers.
+    """
+    def has_permission(self, request, view):
+      return (
+          request.user and request.user.is_authenticated and (
+              request.user.is_superuser or
+              request.user.groups.filter(name='organizer').exists()
+          )
+      )
