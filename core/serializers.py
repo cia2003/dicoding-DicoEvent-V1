@@ -6,11 +6,11 @@ from core.models import User
  
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     _links = serializers.SerializerMethodField()
-    groups = serializers.SerializerMethodField(write_only=False)
+    # groups = serializers.SerializerMethodField(write_only=False)
  
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password', 'groups', '_links']
+        fields = ['id', 'username', 'email', 'password', 'groups', '_links']
         extra_kwargs = {
             'password': {'write_only': True}
         }
