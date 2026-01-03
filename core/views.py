@@ -12,8 +12,16 @@ from django.contrib.auth.models import Group
 from .models import User
 from .serializers import UserSerializer
 from .serializers import GroupSerializer
+from .permissions import IsAdminOrSuperUser, IsSuperUser
  
 class UserListCreateView(APIView):
+    authentication_classes = [JWTAuthentication]
+    
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return [IsAuthenticated(), IsAdminOrSuperUser()]
+        return []
+    
     def get(self, request):
         users = User.objects.all().order_by('username')[:10]
         serializer = UserSerializer(users, many=True)
@@ -27,6 +35,13 @@ class UserListCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
 class UserDetailView(APIView):
+    authentication_classes = [JWTAuthentication]
+    
+    def get_permissions(self):
+        if self.request.method == 'DELETE':
+            return [IsAuthenticated(), IsAdminOrSuperUser()]
+        return []
+        
     def get_object(self, pk):
         try:
             user = User.objects.get(pk=pk)
@@ -54,6 +69,13 @@ class UserDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 class GroupListCreateView(APIView):
+    authentication_classes = [JWTAuthentication]
+    
+    def get_permissions(self):
+        if self.request.method:
+            return [IsAuthenticated(), IsSuperUser()]
+        return []
+    
     def get(self, request):
         groups = Group.objects.all().order_by('name')[:10]
         serializer = GroupSerializer(groups, many=True)
@@ -67,6 +89,13 @@ class GroupListCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
 class GroupDetailView(APIView):
+    authentication_classes = [JWTAuthentication]
+    
+    def get_permissions(self):
+        if self.request.method:
+            return [IsAuthenticated(), IsSuperUser()]
+        return []
+    
     def get_object(self, pk):
         try:
             group = Group.objects.get(pk=pk)
@@ -97,8 +126,20 @@ class AssignRoleView(APIView):
     authentication_classes = [JWTAuthentication]
     # permission_classes = [IsAuthenticated, IsAdminOrSuperUser]
 
+    def get_permissions(self):
+        if self.request.method:
+            return [IsAuthenticated(), IsSuperUser()]
+        return []
+    
     def post(self, request):
         user = get_object_or_404(User, pk=request.data['user_id'])
         group = get_object_or_404(Group, pk=request.data['group_id'])
         user.groups.add(group)
-        return Response(status=status.HTTP_201_CREATED)
+        return Response(
+            {
+                "message": "Role assigned successfully",
+                "user_id": str(user.id),
+                "group": group.name
+            },
+            status=status.HTTP_201_CREATED
+        )
