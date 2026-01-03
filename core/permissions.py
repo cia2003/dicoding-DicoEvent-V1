@@ -59,3 +59,39 @@ class IsOrganizerOrAdmin(BasePermission):
               request.user.groups.filter(name='admin').exists()
           )
       )
+    
+class IsOrganizerOrAdminOrSuperUser(BasePermission):
+    """
+    Allows access to organizer, admin and superusers.
+    """
+    def has_permission(self, request, view):
+      return (
+          request.user and request.user.is_authenticated and (
+              request.user.is_superuser or
+              request.user.groups.filter(name='admin').exists() or
+              request.user.groups.filter(name='organizer').exists()
+          )
+      )
+
+class IsOrganizerOwner(BasePermission):
+    """
+    Allows access only to the organizer who owns the object.
+    Assumes the model instance has an `organizer` attribute.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return request.user and request.user.is_authenticated and obj.organizer_id == request.user
+
+class IsOrganizerOwnerOrAdminOrSuperUser(BasePermission):
+    """
+    Allows access to the organizer who owns the object, admin and superusers.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return (
+            request.user and request.user.is_authenticated and (
+                request.user.is_superuser or
+                request.user.groups.filter(name='admin').exists() or
+                obj.organizer_id == request.user
+            )
+        )

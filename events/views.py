@@ -6,18 +6,17 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import Http404
 
-from core.permissions import IsAdminOrSuperUser
+from core.permissions import IsOrganizerOrAdminOrSuperUser, IsOrganizerOwnerOrAdminOrSuperUser
 from .models import Event
 from .serializers import EventSerializer
 
 # Create your views here.
 class EventListCreateView(APIView):
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
-        if self.request.method != 'GET':
-            return [IsAuthenticated(), IsAdminOrSuperUser()]
+        if self.request.method == 'POST':
+            return [IsAuthenticated(), IsOrganizerOrAdminOrSuperUser()]
         return [IsAuthenticated()]
 
     def get(self, request):
@@ -34,11 +33,10 @@ class EventListCreateView(APIView):
 
 class EventDetailView(APIView):
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
         if self.request.method != 'GET':
-            return [IsAuthenticated(), IsAdminOrSuperUser()]
+            return [IsAuthenticated(), IsOrganizerOwnerOrAdminOrSuperUser()]
         return [IsAuthenticated()]
 
     def get_object(self, id):

@@ -1,4 +1,5 @@
 from django.db import models
+from core.models import User
 import uuid
 
 # Create your models here.
@@ -12,10 +13,10 @@ class Event(models.Model):
     status = models.CharField(max_length=50)
     quota = models.IntegerField()
     category = models.CharField(max_length=100)
-    organizer_id = models.UUIDField()
+    organizer_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.organizer_id}'
     
     class Meta:
         db_table = 'events'
