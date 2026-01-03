@@ -40,7 +40,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'events.apps.EventsConfig',
-    # 'tickets.apps.TicketsConfig',
+    'tickets.apps.TicketsConfig',
     # 'registrations.apps.RegistrationsConfig',
     # 'payments.apps.PaymentsConfig',
     'rest_framework',
