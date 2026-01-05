@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.pagination import PageNumberPagination
 from django.http import Http404
 
 from core.permissions import IsOrganizerOrAdminOrSuperUser, IsOrganizerOwnerOrAdminOrSuperUser
@@ -20,8 +21,12 @@ class EventListCreateView(APIView):
         return [IsAuthenticated()]
 
     def get(self, request):
-        events = Event.objects.all().order_by('start_time')[:10]
-        serializer = EventSerializer(events, many=True)
+        paginator = PageNumberPagination()
+        paginator.page_size = 10
+
+        events = Event.objects.all().order_by('start_time')
+        page = paginator.paginate_queryset(events, request)
+        serializer = EventSerializer(page, many=True)
         return Response({'events': serializer.data})
 
     def post(self, request):
