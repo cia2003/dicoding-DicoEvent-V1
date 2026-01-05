@@ -20,7 +20,7 @@ class UserListCreateView(APIView):
     def get_permissions(self):
         if self.request.method == 'GET':
             return [IsAuthenticated(), IsAdminOrSuperUser()]
-        return []
+        return [IsAuthenticated()]
     
     def get(self, request):
         users = User.objects.all().order_by('username')[:10]
@@ -40,7 +40,7 @@ class UserDetailView(APIView):
     def get_permissions(self):
         if self.request.method == 'DELETE':
             return [IsAuthenticated(), IsAdminOrSuperUser()]
-        return []
+        return [IsAuthenticated()]
         
     def get_object(self, pk):
         try:
