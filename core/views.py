@@ -9,7 +9,7 @@ from django.contrib.auth.models import Group
 from .models import User
 from .serializers import UserSerializer
 from .serializers import GroupSerializer
-from .permissions import IsAdminOrSuperUser, IsSuperUser
+from .permissions import IsAdminOrSuperUser, IsOwnerOrAdminOrSuperUser, IsSuperUser
  
 class UserListCreateView(APIView):
     authentication_classes = [JWTAuthentication]
@@ -17,7 +17,7 @@ class UserListCreateView(APIView):
     def get_permissions(self):
         if self.request.method == 'GET':
             return [IsAuthenticated(), IsAdminOrSuperUser()]
-        return [IsAuthenticated()]
+        return []
     
     def get(self, request):
         users = User.objects.all().order_by('username')[:10]
@@ -37,7 +37,7 @@ class UserDetailView(APIView):
     def get_permissions(self):
         if self.request.method == 'DELETE':
             return [IsAuthenticated(), IsAdminOrSuperUser()]
-        return [IsAuthenticated()]
+        return [IsAuthenticated(), IsOwnerOrAdminOrSuperUser()]
         
     def get_object(self, pk):
         try:
@@ -117,12 +117,9 @@ class GroupDetailView(APIView):
 
 class AssignRoleView(APIView):
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated, IsAdminOrSuperUser]
 
     def get_permissions(self):
-        if self.request.method:
-            return [IsAuthenticated(), IsSuperUser()]
-        return []
+        return [IsAuthenticated(), IsSuperUser()]
     
     def post(self, request):
         user = get_object_or_404(User, pk=request.data['user_id'])

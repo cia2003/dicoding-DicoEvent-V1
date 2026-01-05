@@ -95,3 +95,16 @@ class IsOrganizerOwnerOrAdminOrSuperUser(BasePermission):
                 obj.organizer_id == request.user
             )
         )
+
+class IsOwnerOrAdminOrSuperUser(BasePermission):
+    """
+    Allows access to the owner of the object, admin, and superusers.
+    """
+    def has_object_permission(self, request, view, obj):
+        return (
+            request.user and request.user.is_authenticated and (
+                request.user.is_superuser or
+                request.user.groups.filter(name='admin').exists() or
+                obj == request.user
+            )
+        )
