@@ -22,7 +22,7 @@ class PaymentListCreateView(APIView):
     def get(self, request):
         Payments = Payment.objects.all().order_by('id')
         serializer = PaymentSerializer(Payments, many=True)
-        return Response({'Payments': serializer.data})
+        return Response({'payments': serializer.data})
 
     def post(self, request):
         serializer = PaymentSerializer(data=request.data)

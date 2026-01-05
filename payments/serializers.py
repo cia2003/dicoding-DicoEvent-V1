@@ -7,7 +7,7 @@ from .models import Payment
 class PaymentSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
 
-    registration = serializers.CharField(source='registration.name', read_only=True)
+    registration = serializers.CharField(source='registration.id', read_only=True)
 
     registration_id = serializers.PrimaryKeyRelatedField(
         queryset=Registration.objects.all(),
