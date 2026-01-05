@@ -6,18 +6,17 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import Http404
 
-from core.permissions import IsAdminOrSuperUser, IsOrganizerOrAdmin
+from core.permissions import IsAdminOrSuperUser, IsOrganizerOrAdmin, IsOrganizerOrAdminOrSuperUser
 from .models import Ticket
 from .serializers import TicketSerializer
 
 # Create your views here.
 class TicketListCreateView(APIView):
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
 
     def get_permissions(self):
-        if self.request.method != 'GET':
-            return [IsAuthenticated(), IsAdminOrSuperUser()]
+        if self.request.method == 'POST':
+            return [IsAuthenticated(), IsOrganizerOrAdminOrSuperUser()]
         return [IsAuthenticated()]
 
     def get(self, request):
@@ -36,9 +35,9 @@ class TicketDetailView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        if self.request.method == 'POST':
-            return [IsAuthenticated(), IsOrganizerOrAdmin()]
-        elif self.request.method != 'GET':
+        admin_superuser_access = ['PUT', 'DELETE']
+
+        if self.request.method in admin_superuser_access:
             return [IsAuthenticated(), IsAdminOrSuperUser()]
         return [IsAuthenticated()]
 

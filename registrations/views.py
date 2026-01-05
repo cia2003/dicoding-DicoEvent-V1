@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import Http404
 
-from core.permissions import IsAdminOrSuperUser, IsOrganizerOrAdmin
+from core.permissions import IsAdminOrSuperUser
 from .models import Registration
 from .serializers import RegistrationSerializer
 
@@ -15,12 +15,12 @@ class RegistrationListCreateView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        if self.request.method != 'GET':
+        if self.request.method == 'GET':
             return [IsAuthenticated(), IsAdminOrSuperUser()]
         return [IsAuthenticated()]
 
     def get(self, request):
-        registrations = Registration.objects.all().order_by('sales_start')[:10]
+        registrations = Registration.objects.all().order_by('id')
         serializer = RegistrationSerializer(registrations, many=True)
         return Response({'registrations': serializer.data})
 
@@ -35,9 +35,9 @@ class RegistrationDetailView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        if self.request.method == 'POST':
-            return [IsAuthenticated(), IsOrganizerOrAdmin()]
-        elif self.request.method != 'GET':
+        admin_superuser_access = ['PUT', 'DELETE']
+        
+        if self.request.method in admin_superuser_access:
             return [IsAuthenticated(), IsAdminOrSuperUser()]
         return [IsAuthenticated()]
 

@@ -33,25 +33,25 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return [
             {
                 "rel": "self",
-                "href": reverse('event-list', request=request), 
+                "href": reverse('registration-list', request=request), 
                 "action": "POST", 
                 "types": ["application/json"]
             }, 
             {
                 "rel": "self",
-                "href": reverse('event-detail', kwargs={'id': obj.id}, request=request), 
+                "href": reverse('registration-detail', kwargs={'id': obj.id}, request=request), 
                 "action": "GET", 
                 "types": ["application/json"]
             }, 
             {
                 "rel": "self",
-                "href": reverse('event-detail', kwargs={'id': obj.id}, request=request), 
+                "href": reverse('registration-detail', kwargs={'id': obj.id}, request=request), 
                 "action": "PUT", 
                 "types": ["application/json"]
             },
             {
                 "rel": "self",
-                "href": reverse('event-detail', kwargs={'id': obj.id}, request=request), 
+                "href": reverse('registration-detail', kwargs={'id': obj.id}, request=request), 
                 "action": "DELETE", 
                 "types": ["application/json"]
             }

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'events.apps.EventsConfig',
     'tickets.apps.TicketsConfig',
-    # 'registrations.apps.RegistrationsConfig',
+    'registrations.apps.RegistrationsConfig',
     # 'payments.apps.PaymentsConfig',
     'rest_framework',
     'django.contrib.admin',
