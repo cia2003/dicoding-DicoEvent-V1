@@ -1,6 +1,3 @@
-# from django.shortcuts import render
-
-# Create your views here.
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -72,10 +69,8 @@ class GroupListCreateView(APIView):
     authentication_classes = [JWTAuthentication]
     
     def get_permissions(self):
-        if self.request.method:
-            return [IsAuthenticated(), IsSuperUser()]
-        return []
-    
+        return [IsAuthenticated(), IsSuperUser()]
+
     def get(self, request):
         groups = Group.objects.all().order_by('name')[:10]
         serializer = GroupSerializer(groups, many=True)
@@ -92,9 +87,7 @@ class GroupDetailView(APIView):
     authentication_classes = [JWTAuthentication]
     
     def get_permissions(self):
-        if self.request.method:
-            return [IsAuthenticated(), IsSuperUser()]
-        return []
+        return [IsAuthenticated(), IsSuperUser()]
     
     def get_object(self, pk):
         try:

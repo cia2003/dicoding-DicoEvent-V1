@@ -35,9 +35,7 @@ class RegistrationDetailView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get_permissions(self):
-        admin_superuser_access = ['PUT', 'DELETE']
-        
-        if self.request.method in admin_superuser_access:
+        if self.request.method != 'GET':
             return [IsAuthenticated(), IsAdminOrSuperUser()]
         return [IsAuthenticated()]
 
