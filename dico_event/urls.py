@@ -27,7 +27,7 @@ urlpatterns = [
     path('api/', include('events.urls')),
     path('api/', include('tickets.urls')),
     path('api/', include('registrations.urls')),
-    # path('api/', include('payments.urls')),
+    path('api/', include('payments.urls')),
     path('api/login/', TokenObtainPairView.as_view()),
     path('api/token/', TokenRefreshView.as_view()),
 ]

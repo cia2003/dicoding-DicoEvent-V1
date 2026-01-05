@@ -15,4 +15,3 @@ class Registration(models.Model):
 
     class Meta:
         db_table = 'registrations'
-    pass
