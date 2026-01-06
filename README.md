@@ -1,4 +1,4 @@
-# dicoding-DicoEvent-V1
+# dicoding-DicoEvent-V1 (Rating Project: 5 Stars)
 Repositori ini merupakan pengerjaan tugas proyek pertama fundamental back-end
 
 # Studi Kasus
