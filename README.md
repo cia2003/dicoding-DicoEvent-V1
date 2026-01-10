@@ -1,10 +1,16 @@
 # dicoding-DicoEvent-V1 (Rating Project: 5 Stars)
 Repositori ini merupakan pengerjaan tugas proyek pertama fundamental back-end
 
-# Studi Kasus
+# Studi Kasus 
+## (tahap 1)
 Sebagai seorang Back-End Developer yang berpengalaman, Anda baru saja bergabung dengan startup yang ambisius, DicoTech. Startup ini berencana meluncurkan DicoEvent, sebuah aplikasi manajemen event yang inovatif dan Anda baru saja ditugaskan untuk pengembangan DicoEvent.
 
 Dalam fase pengembangan awal, tugas Anda adalah membangun RESTful API dasar yang akan menjadi tahap pertama dari pengembangan DicoEvent. RESTful API ini akan menangani segala aspek terkait dengan event, seperti menambah, menghapus, dan memodifikasi informasi event di dalam database. Fase ini kritikal dalam memastikan fondasi yang kuat untuk pengembangan fitur lebih lanjut.
+
+## (tahap 2)
+Setelah sukses dalam pengembangan dan peluncuran DicoEvent versi 1, platform ini telah menjadi salah satu favorit bagi penyelenggara event untuk mengelola dan menjalankan acara mereka dengan lebih efisien. DicoTech berambisi untuk mengembangkan DicoEvent lebih lanjut.
+
+Saat ini, DicoTech sedang bersiap untuk peluncuran DicoEvent versi 2. Berdasarkan feedback dari pengguna, ada beberapa fitur yang sangat diharapkan, termasuk kemampuan untuk mengirimkan email reminder ke peserta event dan mengunggah gambar kustom untuk setiap acara yang dapat digunakan sebagai materi promosi atau identitas visual acara. Selain itu, perlu untuk meningkatkan performa RESTful API DicoEvent agar meningkatkan pengalaman pengguna.
 
 ------------
 # Hasil Gambar ERD
