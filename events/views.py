@@ -85,7 +85,7 @@ class EventPosterView(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def get_permissions(self):
-        return [isAuthenticated(), IsOrganizerOwnerOrAdminOrSuperUser()]
+        return [IsAuthenticated(), IsOrganizerOwnerOrAdminOrSuperUser()]
     
     def post(self, request):
         serializer = EventPosterSerializer(data=request.data)
@@ -98,7 +98,6 @@ class EventPosterView(APIView):
                 for chunk in file.chunks():
                     temp_file.write(chunk)
                 temp_file_path = temp_file.name
-            
             try:
                 object_name = f"{serializer.instance.image.name}"
                 client = get_minio_client()
@@ -112,6 +111,7 @@ class EventPosterView(APIView):
                 os.remove(temp_file_path)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class EventPosterDetailView(APIView):
     authentication_classes = [JWTAuthentication]
@@ -119,14 +119,14 @@ class EventPosterDetailView(APIView):
 
     def get(self, request, pk):
         event = get_object_or_404(Event, pk=pk)
-        images = event.eventimage_set.all()
+        images = event.eventposter_set.all()
 
         serialized_images = []
         for image in images:
             client = get_minio_client()
             presigned_url = client.presigned_get_object(
                 bucket_name,
-                image.image_name,
+                image.image.name,
                 response_headers={"response-content-type": "image/jpeg"}
             )
             serialized_images.append({
