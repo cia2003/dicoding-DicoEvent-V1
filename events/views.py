@@ -111,6 +111,7 @@ class EventDetailView(APIView):
         if serializer.is_valid():
             serializer.save()
             cache.delete(CACHE_KEY_DETAIL.format(id))
+            cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -118,6 +119,7 @@ class EventDetailView(APIView):
         event = self.get_object(id)
         event.delete()
         cache.delete(CACHE_KEY_DETAIL.format(id))
+        cache.delete(CACHE_KEY_LIST)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class EventPosterView(APIView):

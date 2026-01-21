@@ -95,6 +95,7 @@ class UserDetailView(APIView):
         if serializer.is_valid():
             serializer.save()
             cache.delete(CACHE_KEY_DETAIL.format(pk))
+            cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
@@ -102,6 +103,7 @@ class UserDetailView(APIView):
         user = self.get_object(pk)
         user.delete()
         cache.delete(CACHE_KEY_DETAIL.format(pk))
+        cache.delete(CACHE_KEY_LIST)
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 class GroupListCreateView(APIView):
@@ -178,6 +180,7 @@ class GroupDetailView(APIView):
         if serializer.is_valid():
             serializer.save()
             cache.delete(CACHE_KEY_DETAIL.format(pk))
+            cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
@@ -185,6 +188,7 @@ class GroupDetailView(APIView):
         group = self.get_object(pk)
         group.delete()
         cache.delete(CACHE_KEY_DETAIL.format(pk))
+        cache.delete(CACHE_KEY_LIST)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class AssignRoleView(APIView):
