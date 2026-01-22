@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-import datetime
+from datetime import datetime
 from django.core.cache import cache
 import json
 from rest_framework import status

@@ -169,7 +169,9 @@ CELERY_TASK_SERIALIZER = 'json'
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('MAIL_HOST')
-EMAIL_PORT = os.getenv('MAIL_PORT')
+EMAIL_PORT = int(os.getenv('MAIL_PORT'))
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 EMAIL_HOST_USER = os.getenv('MAIL_USER')
 EMAIL_HOST_PASSWORD = os.getenv('MAIL_PASSWORD')
+EMAIL_TIMEOUT = 60
