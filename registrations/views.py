@@ -1,4 +1,5 @@
 # from django.shortcuts import render
+import datetime
 from django.core.cache import cache
 import json
 from rest_framework import status
@@ -12,6 +13,8 @@ from core.permissions import IsAdminOrSuperUser
 from events.views import CACHE_KEY_LIST
 from .models import Registration
 from .serializers import RegistrationSerializer
+
+from .tasks import send_registration_confirmation_email
 
 # Create your views here.
 CACHE_KEY_LIST = 'registration_list'
@@ -49,7 +52,28 @@ class RegistrationListCreateView(APIView):
     def post(self, request):
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            registration = serializer.save()
+            order_datetime = registration.ticket.event.start_time
+            order_time = order_datetime.hour
+
+            now_datetime = datetime.now()
+            now_time = now_datetime.hour
+
+            time_difference = order_time - now_time
+
+            if time_difference == 2:
+                send_registration_confirmation_email.delay(
+                    user_email=registration.user.email,
+                    username=registration.user.username,
+                    registration_id=registration.id, 
+                    time=time_difference
+                )
+            else:
+                send_registration_confirmation_email.delay(
+                    user_email=registration.user.email,
+                    username=registration.user.username,
+                    registration_id=registration.id, 
+                )
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

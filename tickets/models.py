@@ -13,7 +13,7 @@ class Ticket(models.Model):
     quota = models.IntegerField()
 
     def __str__(self):
-        return f'Ticket {self.id} for Event {self.event_id}'
+        return f'Ticket {self.id} for Event {self.event.name}'
     
     class Meta:
         db_table = 'tickets'
