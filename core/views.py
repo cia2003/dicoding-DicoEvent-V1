@@ -12,7 +12,7 @@ from .models import User
 from .serializers import UserSerializer
 from .serializers import GroupSerializer
 from .permissions import IsAdminOrSuperUser, IsOwnerOrAdminOrSuperUser, IsSuperUser
- 
+from loguru import logger
 
 CACHE_KEY_LIST = 'user_list'
 CACHE_KEY_DETAIL = 'user_detail_{}'
@@ -49,6 +49,7 @@ class UserListCreateView(APIView):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            logger.info("User created")
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -67,6 +68,7 @@ class UserDetailView(APIView):
             self.check_object_permissions(self.request, user)
             return user
         except User.DoesNotExist:
+            logger.error("User with ID: {} not found", pk)
             raise Http404
  
     def get(self, request, pk):
@@ -94,6 +96,7 @@ class UserDetailView(APIView):
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            logger.info("User with ID: {} updated", pk)
             cache.delete(CACHE_KEY_DETAIL.format(pk))
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data)
@@ -135,6 +138,7 @@ class GroupListCreateView(APIView):
     def post(self, request):
         serializer = GroupSerializer(data=request.data)
         if serializer.is_valid():
+            logger.info("Group created")
             serializer.save()
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -179,6 +183,7 @@ class GroupDetailView(APIView):
         serializer = GroupSerializer(group, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            logger.info("Group with ID: {} updated", pk)
             cache.delete(CACHE_KEY_DETAIL.format(pk))
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data)
@@ -187,6 +192,7 @@ class GroupDetailView(APIView):
     def delete(self, request, pk):
         group = self.get_object(pk)
         group.delete()
+        logger.info("Group with ID: {} deleted", pk)
         cache.delete(CACHE_KEY_DETAIL.format(pk))
         cache.delete(CACHE_KEY_LIST)
         return Response(status=status.HTTP_204_NO_CONTENT)

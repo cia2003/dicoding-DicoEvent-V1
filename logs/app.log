@@ -1,0 +1,75 @@
+2026-01-23 12:05:37.550 | INFO     | core.views:post:52 - User created
+2026-01-23 12:05:39.166 | INFO     | core.views:put:99 - User with ID: 3e59ec4f-59b5-4dfd-a957-d823444f6b36 updated
+2026-01-23 12:05:40.120 | INFO     | core.views:post:52 - User created
+2026-01-23 12:05:42.687 | INFO     | core.views:post:52 - User created
+2026-01-23 12:05:43.971 | INFO     | events.views:post:68 - Event 158967d1-e68a-4171-a2d5-0912a156347d created by dicoding_1769143844_1769143846_1769144187_1769144189_1769144399_1769144401_1769144737_1769144740
+2026-01-23 12:05:44.441 | INFO     | events.views:put:116 - Event updated with ID: 158967d1-e68a-4171-a2d5-0912a156347d
+2026-01-23 12:05:44.607 | INFO     | events.views:delete:125 - Event deleted with ID: 158967d1-e68a-4171-a2d5-0912a156347d
+2026-01-23 12:05:44.759 | INFO     | events.views:post:68 - Event 776d42ef-e709-4a07-9f9b-88a276280ec4 created by dicoding_1769143844_1769143846_1769144187_1769144189_1769144399_1769144401_1769144737_1769144740
+2026-01-23 12:05:44.948 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 12:05:45.499 | INFO     | tickets.views:put:99 - Ticket with ID: 59b912aa-95ab-4b12-973e-28e470fa58df updated
+2026-01-23 12:05:45.686 | INFO     | tickets.views:delete:108 - Ticket with ID: 59b912aa-95ab-4b12-973e-28e470fa58df deleted
+2026-01-23 12:05:45.854 | INFO     | events.views:post:68 - Event 8affe012-78ab-4c2c-8b01-3bac41e25f34 created by dicoding_1769143844_1769143846_1769144187_1769144189_1769144399_1769144401_1769144737_1769144740
+2026-01-23 12:05:46.029 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 12:05:46.190 | INFO     | registrations.views:post:57 - Registration created with ID: e98f4ac1-c47f-49e3-a83f-081487bad400
+2026-01-23 12:05:47.095 | INFO     | events.views:post:68 - Event f12df342-8262-482c-a92b-f986104dacd7 created by dicoding_1769143844_1769143846_1769144187_1769144189_1769144399_1769144401_1769144737_1769144740
+2026-01-23 12:05:47.355 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 12:05:47.512 | INFO     | registrations.views:post:57 - Registration created with ID: 6a78ad5d-f4a8-4cb0-835f-a46c550cf52f
+2026-01-23 12:05:47.698 | INFO     | payments.views:post:53 - Payment created
+2026-01-23 12:05:48.445 | INFO     | tickets.views:delete:108 - Ticket with ID: 1a594a44-5a34-4781-9bf9-1657c51dc183 deleted
+2026-01-23 12:05:48.826 | INFO     | core.views:post:141 - Group created
+2026-01-23 12:05:51.059 | ERROR    | events.views:get_object:87 - Event with ID: e4cb27e5-1647-4a35-ab2a-879efa461d03 not found
+2026-01-23 12:05:51.476 | ERROR    | events.views:get_object:87 - Event with ID: e4cb27e5-1647-4a35-ab2a-879efa461d03 not found
+2026-01-23 12:05:52.464 | INFO     | core.views:delete:195 - Group with ID: 6 deleted
+2026-01-23 13:24:44.730 | INFO     | core.views:post:52 - User created
+2026-01-23 13:24:46.963 | INFO     | core.views:put:99 - User with ID: 401ca162-43b6-44a2-8cd9-fc031e0abcd8 updated
+2026-01-23 13:24:48.099 | INFO     | core.views:post:52 - User created
+2026-01-23 13:24:50.650 | INFO     | core.views:post:52 - User created
+2026-01-23 13:24:52.325 | INFO     | events.views:post:68 - Event 9f98ea3d-8de8-4120-8b36-5bab05d15e0a created by dicoding_1769149484_1769149487
+2026-01-23 13:24:52.934 | INFO     | events.views:put:116 - Event updated with ID: 9f98ea3d-8de8-4120-8b36-5bab05d15e0a
+2026-01-23 13:24:53.152 | INFO     | events.views:delete:125 - Event deleted with ID: 9f98ea3d-8de8-4120-8b36-5bab05d15e0a
+2026-01-23 13:24:53.364 | INFO     | events.views:post:68 - Event 0b5b695d-eb91-4fea-94d3-80de6c388c21 created by dicoding_1769149484_1769149487
+2026-01-23 13:24:53.563 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:24:54.252 | INFO     | tickets.views:put:99 - Ticket with ID: 0f480257-5d16-4981-8128-d62ddd010568 updated
+2026-01-23 13:24:54.478 | INFO     | tickets.views:delete:108 - Ticket with ID: 0f480257-5d16-4981-8128-d62ddd010568 deleted
+2026-01-23 13:24:54.681 | INFO     | events.views:post:68 - Event ca41cccd-22c5-4fca-9ebe-2f878b936850 created by dicoding_1769149484_1769149487
+2026-01-23 13:24:54.875 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:24:55.082 | INFO     | registrations.views:post:57 - Registration created with ID: 5f8ddc16-24af-456e-8130-f3c1abbb3db8
+2026-01-23 13:24:56.358 | INFO     | events.views:post:68 - Event 123670d5-acbd-40f2-9d4c-4ed99db82545 created by dicoding_1769149484_1769149487
+2026-01-23 13:24:56.567 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:24:56.798 | INFO     | registrations.views:post:57 - Registration created with ID: 743ec8ea-6a89-4e4f-a7b1-c2e217c217d7
+2026-01-23 13:24:57.067 | INFO     | payments.views:post:53 - Payment created
+2026-01-23 13:24:58.249 | INFO     | tickets.views:delete:108 - Ticket with ID: 9a2df570-5293-450d-a6bb-0f33b4efc815 deleted
+2026-01-23 13:24:58.774 | INFO     | core.views:post:141 - Group created
+2026-01-23 13:25:03.139 | INFO     | core.views:delete:195 - Group with ID: 7 deleted
+2026-01-23 13:28:28.324 | INFO     | core.views:post:52 - User created
+2026-01-23 13:28:30.104 | INFO     | core.views:put:99 - User with ID: 9862834f-8a2b-484f-9141-ca3f0a6f176c updated
+2026-01-23 13:28:31.086 | INFO     | core.views:post:52 - User created
+2026-01-23 13:28:32.169 | INFO     | core.views:post:141 - Group created
+2026-01-23 13:28:32.517 | INFO     | core.views:put:186 - Group with ID: 1 updated
+2026-01-23 13:28:32.679 | INFO     | core.views:delete:195 - Group with ID: 1 deleted
+2026-01-23 13:28:32.883 | INFO     | core.views:post:141 - Group created
+2026-01-23 13:28:33.566 | INFO     | core.views:post:52 - User created
+2026-01-23 13:28:34.768 | INFO     | events.views:post:68 - Event 9f3930b0-b37f-4527-b166-24e385342204 created by dicoding_1769149484_1769149487_1769149708_1769149710
+2026-01-23 13:28:35.359 | INFO     | events.views:put:116 - Event updated with ID: 9f3930b0-b37f-4527-b166-24e385342204
+2026-01-23 13:28:35.579 | INFO     | events.views:delete:125 - Event deleted with ID: 9f3930b0-b37f-4527-b166-24e385342204
+2026-01-23 13:28:35.778 | INFO     | events.views:post:68 - Event 9903f873-978e-445f-a083-f01aa2b11b7d created by dicoding_1769149484_1769149487_1769149708_1769149710
+2026-01-23 13:28:35.972 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:28:36.511 | INFO     | tickets.views:put:99 - Ticket with ID: a77e87bc-f5f0-4744-af41-b8b975c005eb updated
+2026-01-23 13:28:36.699 | INFO     | tickets.views:delete:108 - Ticket with ID: a77e87bc-f5f0-4744-af41-b8b975c005eb deleted
+2026-01-23 13:28:36.875 | INFO     | events.views:post:68 - Event 86a05729-e6a8-4a5f-b7bf-5b178964489f created by dicoding_1769149484_1769149487_1769149708_1769149710
+2026-01-23 13:28:37.164 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:28:37.411 | INFO     | registrations.views:post:57 - Registration created with ID: 7097e9c6-4539-43af-a76d-e52af39bb780
+2026-01-23 13:28:38.777 | INFO     | events.views:post:68 - Event 8139f2d5-7d54-4824-98df-bd592b0d8a79 created by dicoding_1769149484_1769149487_1769149708_1769149710
+2026-01-23 13:28:38.982 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:28:39.143 | INFO     | registrations.views:post:57 - Registration created with ID: 5449c2aa-ed68-468f-b356-942ce8882eaf
+2026-01-23 13:28:39.353 | INFO     | payments.views:post:53 - Payment created
+2026-01-23 13:28:40.273 | INFO     | tickets.views:delete:108 - Ticket with ID: 4770f2e3-330b-4d61-a555-2bc19b87bc7a deleted
+2026-01-23 13:28:40.657 | INFO     | core.views:post:141 - Group created
+2026-01-23 13:28:41.374 | INFO     | core.views:post:52 - User created
+2026-01-23 13:28:42.102 | INFO     | core.views:post:52 - User created
+2026-01-23 13:28:44.086 | INFO     | events.views:post:68 - Event 98dae551-850b-47d2-96a1-ffd865b96388 created by eo_dicoding
+2026-01-23 13:28:44.274 | INFO     | events.views:post:68 - Event 93a625da-563e-4d74-834a-34301daa5f9e created by other_organizer
+2026-01-23 13:28:44.464 | INFO     | events.views:put:116 - Event updated with ID: 98dae551-850b-47d2-96a1-ffd865b96388
+2026-01-23 13:28:44.929 | INFO     | events.views:delete:125 - Event deleted with ID: 98dae551-850b-47d2-96a1-ffd865b96388
+2026-01-23 13:28:46.137 | INFO     | core.views:delete:195 - Group with ID: 3 deleted
