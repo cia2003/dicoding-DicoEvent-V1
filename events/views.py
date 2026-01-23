@@ -4,6 +4,7 @@ import json
 import os
 import tempfile
 from django.shortcuts import get_object_or_404
+from loguru import logger
 from minio import Minio
 from rest_framework import status
 from rest_framework.response import Response
@@ -63,7 +64,8 @@ class EventListCreateView(APIView):
     def post(self, request):
         serializer = EventSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            created_event = serializer.save()
+            logger.info("Event {} created by {}", created_event.id, created_event.organizer_id.username)
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -82,6 +84,7 @@ class EventDetailView(APIView):
             self.check_object_permissions(self.request, event)
             return event
         except Event.DoesNotExist:
+            logger.error("Event with ID: {} not found", id)
             raise Http404
 
     def get(self, request, id):
@@ -110,6 +113,7 @@ class EventDetailView(APIView):
         serializer = EventSerializer(event, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            logger.info("Event updated with ID: {}", id)
             cache.delete(CACHE_KEY_DETAIL.format(id))
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data)
@@ -118,6 +122,7 @@ class EventDetailView(APIView):
     def delete(self, request, id):
         event = self.get_object(id)
         event.delete()
+        logger.info("Event deleted with ID: {}", id)
         cache.delete(CACHE_KEY_DETAIL.format(id))
         cache.delete(CACHE_KEY_LIST)
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -145,6 +150,7 @@ class EventPosterView(APIView):
                 client = get_minio_client()
                 client.fput_object(bucket_name, object_name, temp_file_path, content_type=file.content_type)
             except Exception as e:
+                logger.error("Failed to upload image to Minio: {}", str(e))
                 return Response(
                     {"error": f"Upload to Minio failed: {str(e)}"},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR

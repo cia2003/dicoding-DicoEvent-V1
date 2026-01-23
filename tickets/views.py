@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import Http404
-
+from loguru import logger
 from core.permissions import IsAdminOrSuperUser, IsOrganizerOrAdmin, IsOrganizerOrAdminOrSuperUser
 from .models import Ticket
 from .serializers import TicketSerializer
@@ -49,6 +49,7 @@ class TicketListCreateView(APIView):
         serializer = TicketSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            logger.info("Ticket created")
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -67,6 +68,7 @@ class TicketDetailView(APIView):
             self.check_object_permissions(self.request, event)
             return event
         except Ticket.DoesNotExist:
+            logger.error("Ticket with ID: {} not found", id)
             raise Http404
 
     def get(self, request, id):
@@ -94,6 +96,7 @@ class TicketDetailView(APIView):
         serializer = TicketSerializer(ticket, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            logger.info("Ticket with ID: {} updated", id)
             cache.delete(CACHE_KEY_DETAIL.format(id))
             cache.delete(CACHE_KEY_LIST)
             return Response(serializer.data)
@@ -102,6 +105,7 @@ class TicketDetailView(APIView):
     def delete(self, request, id):
         ticket = self.get_object(id)
         ticket.delete()
+        logger.info("Ticket with ID: {} deleted", id)
         cache.delete(CACHE_KEY_DETAIL.format(id))
         cache.delete(CACHE_KEY_LIST)
         return Response(status=status.HTTP_204_NO_CONTENT)

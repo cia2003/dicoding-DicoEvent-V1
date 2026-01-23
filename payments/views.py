@@ -6,9 +6,8 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.http import Http404
-
+from loguru import logger
 from core.permissions import IsAdminOrSuperUser
-from events.serializers import EventSerializer
 from .models import Payment
 from .serializers import PaymentSerializer
 from django.core.cache import cache
@@ -51,6 +50,7 @@ class PaymentListCreateView(APIView):
         serializer = PaymentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            logger.info("Payment created")
             cache.delete(CACHE_KEY_LIST)  # Invalidate cache
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -69,6 +69,7 @@ class PaymentDetailView(APIView):
             self.check_object_permissions(self.request, event)
             return event
         except Payment.DoesNotExist:
+            logger.error("Payment with ID: {} not found", id)
             raise Http404
 
     def get(self, request, id):

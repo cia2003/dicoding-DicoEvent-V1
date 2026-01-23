@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from loguru import logger
 
 
 def main():
@@ -16,6 +17,31 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
+
+    logger.remove()
+    logger.add(sys.stdout, level="INFO")
+    logger.add("logs/error.log",
+            rotation="1 day",  
+            level="ERROR",  
+            backtrace=True,
+            diagnose=True, 
+            format=(
+            "{time:YYYY-MM-DD HH:mm:ss.SSS} | "
+            "{level:<8>} | "
+            "{name}:{function}:{line} - "
+            "{message}"
+        ),
+    ) 
+    logger.add("logs/app.log",
+            rotation="1 day",  
+            level="INFO", 
+            format=(
+                "{time:YYYY-MM-DD HH:mm:ss.SSS} | "
+                "{level:<8} | "
+                "{name}:{function}:{line} - "
+                "{message}"
+        ),
+    )
 
 
 if __name__ == '__main__':

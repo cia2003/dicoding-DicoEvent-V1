@@ -2,6 +2,7 @@
 from datetime import datetime
 from django.core.cache import cache
 import json
+from loguru import logger
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -53,6 +54,8 @@ class RegistrationListCreateView(APIView):
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
             registration = serializer.save()
+            logger.info("Registration created with ID: {}", registration.id)
+
             order_datetime = registration.ticket.event.start_time
             order_time = order_datetime.hour
 
@@ -61,7 +64,7 @@ class RegistrationListCreateView(APIView):
 
             time_difference = order_time - now_time
 
-            if time_difference == 2:
+            if time_difference <= 2:
                 send_registration_confirmation_email.delay(
                     user_email=registration.user.email,
                     username=registration.user.username,
@@ -92,6 +95,7 @@ class RegistrationDetailView(APIView):
             self.check_object_permissions(self.request, event)
             return event
         except Registration.DoesNotExist:
+            logger.error("Registration with ID: {} not found", id)
             raise Http404
 
     def get(self, request, id):
