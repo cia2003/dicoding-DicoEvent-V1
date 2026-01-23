@@ -25,10 +25,10 @@ def main():
                 diagnose=True, 
                 format=LOG_FORMAT,
         ) 
-        logger.add("logs/app.log",
+        logger.add("logs/application.log",
                 rotation="1 day",  
                 level="INFO", 
-                filter=lambda record: record["level"].no < 40,
+                filter=lambda record: record["level"].name in ("INFO", "WARNING"),
                 format=LOG_FORMAT,
         )
         from django.core.management import execute_from_command_line
