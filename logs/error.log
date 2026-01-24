@@ -1,0 +1,2 @@
+2026-01-23 13:41:34.489 | ERROR    | events.views:get_object:87 - Event with ID: 98dae551-850b-47d2-96a1-ffd865b96388 not found
+2026-01-23 13:41:34.866 | ERROR    | events.views:get_object:87 - Event with ID: 98dae551-850b-47d2-96a1-ffd865b96388 not found

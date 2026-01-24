@@ -1,0 +1,21 @@
+2026-01-23 13:41:19.827 | INFO     | core.views:post:52 - User created
+2026-01-23 13:41:21.758 | INFO     | core.views:put:99 - User with ID: 1cea8ff6-f0cf-456c-a3ec-3b15a12ce633 updated
+2026-01-23 13:41:22.673 | INFO     | core.views:post:52 - User created
+2026-01-23 13:41:25.261 | INFO     | core.views:post:52 - User created
+2026-01-23 13:41:26.566 | INFO     | events.views:post:68 - Event e014a58a-72a9-41d6-96c8-cdcdc4276217 created by dicoding_1769149484_1769149487_1769149708_1769149710_1769150479_1769150482
+2026-01-23 13:41:27.280 | INFO     | events.views:put:116 - Event updated with ID: e014a58a-72a9-41d6-96c8-cdcdc4276217
+2026-01-23 13:41:27.481 | INFO     | events.views:delete:125 - Event deleted with ID: e014a58a-72a9-41d6-96c8-cdcdc4276217
+2026-01-23 13:41:27.677 | INFO     | events.views:post:68 - Event 7d1ec909-e889-4dcd-9669-8284aeb175f4 created by dicoding_1769149484_1769149487_1769149708_1769149710_1769150479_1769150482
+2026-01-23 13:41:27.890 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:41:28.545 | INFO     | tickets.views:put:99 - Ticket with ID: 6f0f6be4-3b91-472b-b550-0f435afce7c4 updated
+2026-01-23 13:41:28.712 | INFO     | tickets.views:delete:108 - Ticket with ID: 6f0f6be4-3b91-472b-b550-0f435afce7c4 deleted
+2026-01-23 13:41:28.883 | INFO     | events.views:post:68 - Event 9efcaaaa-6c64-4d1e-86cd-1bedfcc0dc8f created by dicoding_1769149484_1769149487_1769149708_1769149710_1769150479_1769150482
+2026-01-23 13:41:29.084 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:41:29.363 | INFO     | registrations.views:post:57 - Registration created with ID: 43b0caa1-bcfc-48e7-92b7-eb5085cf53b9
+2026-01-23 13:41:30.396 | INFO     | events.views:post:68 - Event 52e328be-68b5-4fd4-9ed9-5ac43f209888 created by dicoding_1769149484_1769149487_1769149708_1769149710_1769150479_1769150482
+2026-01-23 13:41:30.567 | INFO     | tickets.views:post:52 - Ticket created
+2026-01-23 13:41:30.762 | INFO     | registrations.views:post:57 - Registration created with ID: 38f4244e-8e64-4715-9567-f7d45c929cbf
+2026-01-23 13:41:30.936 | INFO     | payments.views:post:53 - Payment created
+2026-01-23 13:41:31.718 | INFO     | tickets.views:delete:108 - Ticket with ID: bb7814c2-f198-48eb-9edd-3cf2caf56b5f deleted
+2026-01-23 13:41:32.089 | INFO     | core.views:post:141 - Group created
+2026-01-23 13:41:35.927 | INFO     | core.views:delete:195 - Group with ID: 4 deleted
